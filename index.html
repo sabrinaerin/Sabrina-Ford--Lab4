@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 4</title>
+</head>
+<body style="text-align:center;">
+	<h1>JavaScript Lab</h1>
+
+	<!--DOM Manipulation -->
+	<h2>Task 1: DOM Input Text Value Property</h2>
+	<p id="paragraph">This is the original text.</p>
+	<button onclick="changeText()">Click Me!</button>
+
+	<!-- Form with Name and Age -->
+	<h2>Form Input</h2>
+	<form onsubmit="event.preventDefault(); displayMessage();">
+		<input type="text" id="name" placeholder="Enter your name"><br>
+		<input type="number" id="age" placeholder="Enter your age"><br>
+		<button type="submit">Submit</button>
+	</form>
+	<p id="message"></p>
+
+	<!-- Data Types -->
+	<h2>Show Data Types</h2>
+	<button onclick="displayDataTypes()">Click Here!</button>
+	<p id="dataTypes"></p>
+
+	<!-- String Comparison -->
+	<h2>String Comparison</h2>
+	<button onclick="compareStrings()">Compare Strings</button>
+	<p id="stringComparison"></p>
+
+	<!--Operators -->
+	<h2>Assignment Operators</h2>
+	<button onclick="assignmentOperators()">Run Operations</button>
+	<p id="assignmentOperators"></p>
+
+	<!-- Celsius to Fahrenheit -->
+	<h2>Temperature Conversion</h2>
+	<input type="number" id="celsius" placeholder="Enter Celsius" onchange="cToF(this.value)">
+	<p id="cToFResult"></p>
+
+	<input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" onchange="fToC(this.value)">
+	<p id="fToCResult"></p>
+
+	<script>
+
+		function changeText() {
+			document.getElementById("paragraph").innerHTML = "Hello, DOM Manipulation!";
+		}
+
+
+		function displayMessage() {
+			let name = document.getElementById("name").value;
+			let age = document.getElementById("age").value;
+			document.getElementById("message").innerHTML = `Hello, ${name}! You are ${age} years old!`;
+		}
+
+		function displayDataTypes() {
+			let str = "Hello World";
+			let num = 42;
+			let bool = true;
+			let nil = null;
+			let undef;
+			let bigInt = BigInt(9007199254740991);
+
+			document.getElementById("dataTypes").innerHTML = `
+				String: ${str} (Type: ${typeof str})<br>
+				Number: ${num} (Type: ${typeof num})<br>
+				Boolean: ${bool} (Type: ${typeof bool})<br>
+				Null: ${nil} (Type: ${typeof nil})<br>
+				Undefined: ${undef} (Type: ${typeof undef})<br>
+				BigInt: ${bigInt} (Type: ${typeof bigInt})
+			`;
+		}
+
+		//  String Comparison
+		function compareStrings() {
+			let comparisons = `
+				'apple' vs. 'orange': ${'apple' < 'orange'}<br>
+				'dog' vs. 'dog': ${'dog' === 'dog'}<br>
+				'banana' vs. 'Banana': ${'banana' > 'Banana'}<br>
+				// Additional comparisons can be added here
+			`;
+			document.getElementById("stringComparison").innerHTML = comparisons;
+		}
+
+		// Assignment Operators
+		function assignmentOperators() {
+			let x = 100;
+			let result = `Initial value: ${x}<br>`;
+			x += 50;
+			result += `After += 50: ${x}<br>`;
+			x -= 30;
+			result += `After -= 30: ${x}<br>`;
+			x *= 2;
+			result += `After *= 2: ${x}<br>`;
+			x /= 5;
+			result += `After /= 5: ${x}<br>`;
+			x %= 7;
+			result += `After %= 7: ${x}<br>`;
+
+			document.getElementById("assignmentOperators").innerHTML = result;
+		}
+
+		// Celsius to Fahrenheit
+		function cToF(celsius) {
+			let fahrenheit = (celsius * 9/5) + 32;
+			document.getElementById("cToFResult").innerHTML = `Celsius to Fahrenheit: ${fahrenheit}`;
+		}
+
+		//  external.js:
+		function fToC(fahrenheit) {
+			let celsius = (fahrenheit - 32) * 5/9;
+			document.getElementById("fToCResult").innerHTML = `Fahrenheit to Celsius: ${celsius}`;
+		}
+	</script>
+
+</body>
+</html>
